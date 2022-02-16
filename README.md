@@ -3,7 +3,7 @@
  ## Start the project
  clone or download the project - https://github.com/BenBelson1988/city-weather-node-react.git
  
- open terminal-
+ ### open terminal
  cd client - npm install.
 
  cd server - npm install.
