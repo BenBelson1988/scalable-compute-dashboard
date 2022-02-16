@@ -18,7 +18,7 @@ export const useWeatherFetch = () => {
 
   const searchCity = async (cityName) => {
     setState({ ...state, isLoading: true });
-    const resp = await axios.get(`http://localhost:3000/${cityName}`);
+    const resp = await axios.get(`http://localhost:4000/${cityName}`);
     if (resp.data.error)
       setState({
         ...state,
