@@ -9,7 +9,7 @@
  cd server - npm install.
   
  ### run scripts
- server - npm run dev
+ first - server - npm run dev
  
  client - npm start
 
