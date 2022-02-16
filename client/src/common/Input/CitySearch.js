@@ -12,7 +12,6 @@ export default ({ searchCity }) => {
       setCityState({ ...cityState, error: true });
     } else searchCity(cityState.name);
   };
-  console.log(cityState);
 
   return (
     <S.SearchWrapper>

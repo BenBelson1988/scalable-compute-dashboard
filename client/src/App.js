@@ -6,7 +6,6 @@ import { Loader } from "./common/Loader/Loader";
 
 function App() {
   const { state, searchCity } = useWeatherFetch();
-  console.log(state);
   return (
     <Style.AppContainer>
       {state.isLoading && <Loader />}

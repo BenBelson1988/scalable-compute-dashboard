@@ -12,7 +12,6 @@ router.get("/:cityName", async (req, res) => {
     );
     const data = await response.json();
     res.send(data);
-    console.log(data);
   } catch (e) {
     res.status(500).send(e);
   }
