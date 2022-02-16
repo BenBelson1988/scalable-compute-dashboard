@@ -5,6 +5,7 @@
  
  open terminal-
  cd client - npm install.
+
  cd server - npm install.
   
  ### run scripts
