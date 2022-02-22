@@ -5,10 +5,14 @@ export const AppContainer = styled.div`
   font-family: "Heebo", sans-serif;
   height: 100vh;
   width: 100vw;
-  background: #f1f1f1;
+  background: white
+  background-blend-mode: lighten;
   display: flex;
-  flex-direction: row;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CiscoIcon = styled.img`
+  width: 7vw;
+  height: 7vw;
 `;
