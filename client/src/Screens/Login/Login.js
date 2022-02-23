@@ -1,8 +1,11 @@
 import * as Style from "./style";
 import ec2Pic from "../../Pics/Amazon-EC2-image.png";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getUserFromDB } from "../../stores/userSlicer";
 
-export default () => {
+export default ({ error }) => {
+  const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
     user: "",
     password: "",
@@ -35,6 +38,7 @@ export default () => {
       });
       return;
     }
+    dispatch(getUserFromDB(loginDetails));
   };
 
   const toggleShowPassword = () => {
@@ -71,6 +75,7 @@ export default () => {
           {loginDetails.passwordError && (
             <Style.Error>{loginDetails.passwordError}</Style.Error>
           )}
+          {error && <Style.Error>{error}</Style.Error>}
           <Style.LoginButton onClick={handleLogin}>Login</Style.LoginButton>
           <Style.ShowPassword
             show={loginDetails.showPassword}

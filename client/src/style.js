@@ -4,7 +4,7 @@ export const AppContainer = styled.div`
   @import url("https://fonts.googleapis.com/css?family=Heebo:100,200,300,400,500,600,700&display=swap");
   font-family: "Heebo", sans-serif;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: white
   background-blend-mode: lighten;
   display: flex;
