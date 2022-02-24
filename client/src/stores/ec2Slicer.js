@@ -12,7 +12,7 @@ export const getEC2List = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       const listResponse = await axios.get(
-        "http://localhost:4000/fakeec2/350",
+        "http://localhost:4000/fakeec2/50000",
         {
           headers: {
             Auth: token,

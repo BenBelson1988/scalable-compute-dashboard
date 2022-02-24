@@ -45,7 +45,7 @@ export default ({ user, token }) => {
   };
 
   const searchByType = (value) => {
-    if (value === "") {
+    if (value.trim() === "") {
       setUpdatedList(
         ec2List.slice(0).sort((a, b) => (a.name > b.name ? 1 : -1))
       );
