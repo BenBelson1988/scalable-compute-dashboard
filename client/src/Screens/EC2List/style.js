@@ -5,7 +5,7 @@ export const listPageWrraper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 80vw;
-  height: 40vw;
+  height: 35vw;
   box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px;
   border-radius: 20px;
   background: #ffb2b2;
@@ -71,4 +71,11 @@ export const CheckBox = styled.div`
   &:hover {
     transform: translateY(-3px);
   }
+`;
+
+export const UserH3 = styled.h3`
+  font-size: 1.5vw;
+  align-self: start;
+  margin: 0;
+  margin-left: 10vw;
 `;

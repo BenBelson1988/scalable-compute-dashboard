@@ -48,7 +48,6 @@ export default ({ user, token }) => {
       );
       return;
     }
-    console.log(value);
     let [type] = Object.keys(searchBy);
     setUpdatedList(
       ec2List.filter((ec2) =>
@@ -59,7 +58,7 @@ export default ({ user, token }) => {
 
   return (
     <>
-      {user && <h3>Hi {user}</h3>}
+      {user && <Style.UserH3>Hi {user}</Style.UserH3>}
       <Style.listPageWrraper>
         <Style.H1>Seacrh, sort and explore your EC2's</Style.H1>
         <Style.RowDiv>
