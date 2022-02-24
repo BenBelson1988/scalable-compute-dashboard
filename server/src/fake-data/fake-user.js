@@ -6,7 +6,7 @@ const fakeUser = {
   token: "someAuthToken",
 };
 
-const getFakeUser = async ({ user, password }) => {
+const getFakeUser = ({ user, password }) => {
   if (user !== fakeUser.user) throw new Error("User name doesn't exist");
   if (sha256(password) !== fakeUser.password) throw new Error("Wrong password");
   const token = fakeUser.token;
