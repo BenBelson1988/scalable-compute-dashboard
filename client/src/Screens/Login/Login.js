@@ -3,8 +3,9 @@ import ec2Pic from "../../Pics/Amazon-EC2-image.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserFromDB } from "../../stores/userSlicer";
+import { Loader } from "../../common/Loader/Loader";
 
-export default ({ error }) => {
+export default ({ error, loadingUser }) => {
   const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({
     user: "",
@@ -50,6 +51,7 @@ export default ({ error }) => {
 
   return (
     <>
+      {loadingUser && <Loader />}
       <Style.H2>Hi guest, Log in to see youre active EC2</Style.H2>
       <Style.LoginCard>
         <Style.ColumnDiv>

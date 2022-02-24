@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ListContainer from "../../common/ListContainer/ListContainer";
+import { Loader } from "../../common/Loader/Loader";
 import { getEC2List } from "../../stores/ec2Slicer";
 import * as Style from "./style";
+
+const [DEC, ASC] = ["▼", "▲"];
 
 export default ({ user, token }) => {
   const dispatch = useDispatch();
   const { ec2List, loadingList, error } = useSelector(({ ec2list }) => ec2list);
   const [updatedList, setUpdatedList] = useState([]);
   const [sortState, setSortState] = useState({
-    name: "▼",
+    name: DEC,
   });
   const [searchBy, setSearchBy] = useState({
     name: true,
   });
 
   useEffect(() => {
-    dispatch(getEC2List());
+    dispatch(getEC2List(token));
   }, []);
 
   useEffect(() => {
@@ -24,16 +27,16 @@ export default ({ user, token }) => {
   }, [ec2List]);
 
   const sortListByValue = (type) => {
-    if (sortState[type] === "▲") {
+    if (sortState[type] === ASC) {
       setUpdatedList(
         ec2List.slice(0).sort((a, b) => (a[type] > b[type] ? 1 : -1))
       );
-      setSortState({ [type]: "▼" });
+      setSortState({ [type]: DEC });
     } else {
       setUpdatedList(
         ec2List.slice(0).sort((a, b) => (a[type] < b[type] ? 1 : -1))
       );
-      setSortState({ [type]: "▲" });
+      setSortState({ [type]: ASC });
     }
   };
 
@@ -59,6 +62,7 @@ export default ({ user, token }) => {
   return (
     <>
       {user && <Style.UserH3>Hi {user}</Style.UserH3>}
+      {loadingList && <Loader />}
       <Style.listPageWrraper>
         <Style.H1>Seacrh, sort and explore your EC2's</Style.H1>
         <Style.RowDiv>
@@ -105,11 +109,7 @@ export default ({ user, token }) => {
           <Style.TableHeading>Public IP</Style.TableHeading>
           <Style.TableHeading>Private IP</Style.TableHeading>
         </Style.TableHeadingDiv>
-        <ListContainer
-          list={updatedList}
-          loadingList={loadingList}
-          error={error}
-        />
+        {!loadingList && <ListContainer list={updatedList} error={error} />}
       </Style.listPageWrraper>
     </>
   );

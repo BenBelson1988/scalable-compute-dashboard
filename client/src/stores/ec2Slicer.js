@@ -9,13 +9,15 @@ const initialState = {
 
 export const getEC2List = createAsyncThunk(
   "list/getList",
-  async (_, { rejectWithValue }) => {
+  async (token, { rejectWithValue }) => {
     try {
       const listResponse = await axios.get(
-        "http://localhost:4000/fakeec2/350"
-        // {
-        //   token,
-        // }
+        "http://localhost:4000/fakeec2/350",
+        {
+          headers: {
+            Auth: token,
+          },
+        }
       );
       return { data: listResponse.data };
     } catch (e) {

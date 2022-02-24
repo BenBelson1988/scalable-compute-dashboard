@@ -14,7 +14,11 @@ export default () => {
       <Route exact path="/">
         <Redirect to={"/login"} />
       </Route>
-      <Route exact path="/login" component={() => <Login error={error} />} />
+      <Route
+        exact
+        path="/login"
+        component={() => <Login loadingUser={loadingUser} error={error} />}
+      />
       <Route
         exact
         path="/EC2List"

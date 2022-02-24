@@ -5,7 +5,7 @@ import * as Style from "./style";
 
 const ITEMS_PER_PAGE = 20;
 
-export default ({ list, loadingList, error }) => {
+export default ({ list, error }) => {
   const [showItems, setShowItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
@@ -27,11 +27,11 @@ export default ({ list, loadingList, error }) => {
       setPageNumber(pageNumber + 1);
     }
   };
-  console.log(list);
   return (
     <Style.List id="scrollable">
+      {error && <h2>{error}</h2>}
       {showItems.length === 0 && <h1>No results found.</h1>}
-      {Array.isArray(showItems) && (
+      {Array.isArray(showItems) && !error && (
         <InfiniteScroll
           dataLength={showItems.length}
           next={FecthMoreData}
