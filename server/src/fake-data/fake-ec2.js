@@ -2,7 +2,7 @@ const { faker } = require("@faker-js/faker");
 
 const makeFakeEC2 = (amount = 50000) => {
   if ((amount < 1) | (amount > 50001))
-    return "The requested amount of EC2 should be between 1 to 50000";
+    return "The requested amount of EC2 should be between 1 to 50,001";
   const ec2Arr = [];
   for (let i = 0; i < amount; i++) {
     ec2Arr.push({
