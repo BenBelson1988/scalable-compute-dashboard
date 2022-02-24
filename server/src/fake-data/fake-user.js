@@ -15,4 +15,5 @@ const getFakeUser = ({ user, password }) => {
 
 module.exports = {
   getFakeUser,
+  fakeUser,
 };
