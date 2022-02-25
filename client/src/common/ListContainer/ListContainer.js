@@ -29,10 +29,11 @@ export default ({ list, error }) => {
   };
   return (
     <Style.List id="scrollable">
-      {error && <h2>{error}</h2>}
+      {error && <h2 data-testid="listError">{error}</h2>}
       {showItems.length === 0 && <h1>No results found.</h1>}
       {Array.isArray(showItems) && !error && (
         <InfiniteScroll
+          data-testid="infinityScroll"
           dataLength={showItems.length}
           next={FecthMoreData}
           hasMore={hasMore}

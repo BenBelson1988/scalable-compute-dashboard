@@ -51,7 +51,7 @@ export default ({ error, loadingUser }) => {
 
   return (
     <>
-      {loadingUser && <Loader />}
+      {loadingUser && <Loader data-testid="loader" />}
       <Style.H2>Hi guest, Log in to see youre active EC2</Style.H2>
       <Style.LoginCard>
         <Style.ColumnDiv>
@@ -60,26 +60,35 @@ export default ({ error, loadingUser }) => {
           </Style.H3>
           <Style.InputLabel>User name</Style.InputLabel>
           <Style.LoginInput
+            data-testid="userNameInput"
             onBlur={(e) => handleFormInputs(e, "user")}
             placeholder="user name"
             onChange={() => handleFormChange("user")}
           />
           {loginDetails.userError && (
-            <Style.Error>{loginDetails.userError}</Style.Error>
+            <Style.Error data-testid="userInputError">
+              {loginDetails.userError}
+            </Style.Error>
           )}
           <Style.InputLabel>Password</Style.InputLabel>
           <Style.LoginInput
+            data-testid="passwordInput"
             onBlur={(e) => handleFormInputs(e, "password")}
             placeholder="password"
             type={loginDetails.showPassword ? "text" : "password"}
             onChange={() => handleFormChange()}
           />
           {loginDetails.passwordError && (
-            <Style.Error>{loginDetails.passwordError}</Style.Error>
+            <Style.Error data-testid="passwordInputError">
+              {loginDetails.passwordError}
+            </Style.Error>
           )}
-          {error && <Style.Error>{error}</Style.Error>}
-          <Style.LoginButton onClick={handleLogin}>Login</Style.LoginButton>
+          {error && <Style.Error data-testid="error">{error}</Style.Error>}
+          <Style.LoginButton data-testid="loginButton" onClick={handleLogin}>
+            Login
+          </Style.LoginButton>
           <Style.ShowPassword
+            data-testid="showPassword"
             show={loginDetails.showPassword}
             onClick={() => toggleShowPassword()}
           ></Style.ShowPassword>

@@ -21,7 +21,7 @@ const store = createStore(
 
 function App() {
   return (
-    <Provider store={store}>
+    <Provider store={store} data-testid="store">
       <Style.AppContainer>
         <Router>
           <Style.CiscoIcon src={ciscoIcon} />

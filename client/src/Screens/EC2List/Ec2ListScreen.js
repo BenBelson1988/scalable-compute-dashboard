@@ -17,6 +17,7 @@ export default ({ user, token }) => {
   const [searchBy, setSearchBy] = useState({
     name: true,
   });
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     dispatch(getEC2List(token));
@@ -42,9 +43,13 @@ export default ({ user, token }) => {
 
   const setActiveByType = (type) => {
     setSearchBy({ [type]: true });
+    setSearchTerm("");
+    setUpdatedList(ec2List.slice(0).sort((a, b) => (a.name > b.name ? 1 : -1)));
+    setSortState({ name: DEC });
   };
 
   const searchByType = (value) => {
+    setSearchTerm(value);
     if (value.trim() === "") {
       setUpdatedList(
         ec2List.slice(0).sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -58,7 +63,7 @@ export default ({ user, token }) => {
       )
     );
   };
-
+  debugger;
   return (
     <>
       {user && <Style.UserH3>Hi {user}</Style.UserH3>}
@@ -67,8 +72,13 @@ export default ({ user, token }) => {
         <Style.H1>Seacrh, sort and explore your EC2's</Style.H1>
         <Style.RowDiv>
           <Style.SearchText>Search for EC2</Style.SearchText>
-          <Style.SearchInput onChange={(e) => searchByType(e.target.value)} />
+          <Style.SearchInput
+            data-testid="searchEC2Input"
+            value={searchTerm}
+            onChange={(e) => searchByType(e.target.value)}
+          />
           <Style.CheckBox
+            data-testid="searchByName"
             active={searchBy.name}
             onClick={() => {
               setActiveByType("name");
@@ -76,6 +86,7 @@ export default ({ user, token }) => {
           />
           <Style.SearchText>Name</Style.SearchText>
           <Style.CheckBox
+            data-testid="searchBypublicIP"
             active={searchBy.publicIP}
             onClick={() => {
               setActiveByType("publicIP");
@@ -83,6 +94,7 @@ export default ({ user, token }) => {
           />
           <Style.SearchText>Public IP</Style.SearchText>
           <Style.CheckBox
+            data-testid="searchByprivateIP"
             active={searchBy.privateIP}
             onClick={() => {
               setActiveByType("privateIP");
@@ -91,23 +103,42 @@ export default ({ user, token }) => {
           <Style.SearchText>Private IP</Style.SearchText>
         </Style.RowDiv>
         <Style.TableHeadingDiv>
-          <Style.TableHeading onClick={() => sortListByValue("name")}>
+          <Style.TableHeading
+            data-testid="nameHead"
+            onClick={() => sortListByValue("name")}
+          >
             Name{sortState.name}
           </Style.TableHeading>
-          <Style.TableHeading onClick={() => sortListByValue("id")}>
+          <Style.TableHeading
+            data-testid="IDHead"
+            onClick={() => sortListByValue("id")}
+          >
             Id{sortState.id}
           </Style.TableHeading>
-          <Style.TableHeading onClick={() => sortListByValue("type")}>
+          <Style.TableHeading
+            data-testid="typeHead"
+            onClick={() => sortListByValue("type")}
+          >
             Type{sortState.type}
           </Style.TableHeading>
-          <Style.TableHeading onClick={() => sortListByValue("state")}>
+          <Style.TableHeading
+            data-testid="stateHead"
+            onClick={() => sortListByValue("state")}
+          >
             State{sortState.state}
           </Style.TableHeading>
-          <Style.TableHeading onClick={() => sortListByValue("az")}>
+          <Style.TableHeading
+            data-testid="azHead"
+            onClick={() => sortListByValue("az")}
+          >
             AZ{sortState.az}
           </Style.TableHeading>
-          <Style.TableHeading>Public IP</Style.TableHeading>
-          <Style.TableHeading>Private IP</Style.TableHeading>
+          <Style.TableHeading data-testid="publicIPHead">
+            Public IP
+          </Style.TableHeading>
+          <Style.TableHeading data-testid="privateIPHead">
+            Private IP
+          </Style.TableHeading>
         </Style.TableHeadingDiv>
         {!loadingList && <ListContainer list={updatedList} error={error} />}
       </Style.listPageWrraper>
